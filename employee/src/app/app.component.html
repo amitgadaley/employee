@@ -1,4 +1,7 @@
 <h2>Employees: </h2>
+<div class="form-group">
+  <input [(ngModel)]="filterText" />
+</div>
 <table class="table table-bordered">
   <thead>
       <tr>
@@ -12,7 +15,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let employee of employees">
+      <tr *ngFor="let employee of employees | searchFilter: { name: filterText, city: filterText }">
         <td>{{employee.id}}</td>
         <td>{{employee.name}}</td>
         <td *ngIf="isNumber(employee.phone); else elseBlock">{{employee.phone}}</td>
@@ -24,4 +27,3 @@
       </tr>
     </tbody>
 </table>
-
